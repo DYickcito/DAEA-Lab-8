@@ -1,0 +1,67 @@
+@model Libro
+
+@{
+    ViewData["Title"] = "Detalles del Libro";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white py-3">
+                <h4 class="mb-0"><i class="bi bi-info-circle me-2"></i>Detalles del Libro</h4>
+            </div>
+            <div class="card-body p-4">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4 text-muted">ID:</dt>
+                    <dd class="col-sm-8 fw-bold">@Model.LibroId</dd>
+
+                    <dt class="col-sm-4 text-muted">Título:</dt>
+                    <dd class="col-sm-8 fs-5 fw-semibold text-primary">@Model.Titulo</dd>
+
+                    <dt class="col-sm-4 text-muted">ISBN:</dt>
+                    <dd class="col-sm-8"><code>@Model.ISBN</code></dd>
+
+                    <dt class="col-sm-4 text-muted">Autor:</dt>
+                    <dd class="col-sm-8">@Model.AutorNombre</dd>
+
+                    <dt class="col-sm-4 text-muted">Ejemplares disponibles:</dt>
+                    <dd class="col-sm-8">
+                        @if (Model.Ejemplares > 0)
+                        {
+                            <span class="badge bg-success">@Model.Ejemplares unidades</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Sin ejemplares</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-4 text-muted">Estado del Registro:</dt>
+                    <dd class="col-sm-8">
+                        @if (Model.Activo)
+                        {
+                            <span class="badge bg-info text-dark">Activo</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Inactivo</span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+            <div class="card-footer bg-light d-flex justify-content-between p-3">
+                <a asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-1"></i>Regresar a la lista
+                </a>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@Model.LibroId" class="btn btn-primary me-2">
+                        <i class="bi bi-pencil me-1"></i>Editar
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@Model.LibroId" class="btn btn-outline-danger">
+                        <i class="bi bi-trash me-1"></i>Eliminar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
